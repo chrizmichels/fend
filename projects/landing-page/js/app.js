@@ -23,20 +23,13 @@
  * Start Helper Functions
  *
  */
-//Select Page Sections
 
+//Select Page Sections
 function getHtmlElements(element) {
   return document.querySelectorAll(element);
 }
 
-/* function getNavItems(ndList) {
-  const psecPosition = [];
-  ndList.forEach((el, indx) => {
-    psecPosition.push(el.getAttribute("data-nav"));
-  });
-  return psecPosition;
-} */
-
+//Removes Active Class form Navigation
 function removeActiveClass(pageSections) {
   pageSections.forEach(el => {
     if (el.getAttribute("class") === "your-active-class") {
@@ -45,7 +38,8 @@ function removeActiveClass(pageSections) {
   });
 }
 
-function resetNavStyling(Navbar) {
+//Clear Navigation from active Styling
+function resetNavStyling(navBar) {
   let items = navBar.getElementsByTagName("li");
   for (item of items) {
     let clsList = item.classList;
@@ -55,10 +49,11 @@ function resetNavStyling(Navbar) {
   }
 }
 
+//Change Navigation Styem on Event Trigger
 function changeNavBarStyle(navBar, navSectionName) {
   resetNavStyling(navBar);
   let items = navBar.getElementsByTagName("li");
-  // console.log(items);
+  console.log("CHNG NAV Style of: " + items, navSectionName);
   for (item of items) {
     if (item.getAttribute("data-active") === navSectionName) {
       console.log(item, item.firstChild.classList);
@@ -71,6 +66,7 @@ function changeNavBarStyle(navBar, navSectionName) {
   }
 }
 
+//Togggels Navigation Active
 function toggleNavigation(pageSections, navSectionName) {
   //Remove any active Section
   removeActiveClass(pageSections);
@@ -83,7 +79,8 @@ function toggleNavigation(pageSections, navSectionName) {
   });
 }
 
-function navigateToScrollPos() {
+//Adjust Navigation while scrolling
+function navigateToScrollPos(NavBar) {
   let secPos = [];
 
   //Scroll Event Listener
@@ -95,6 +92,14 @@ function navigateToScrollPos() {
 
     // console.log(secPos);
     let pos = secPos.findIndex(el => el > 0);
+    console.log(pos, navBar, `Section ${pos}`);
+
+    if (pos < 0) {
+      //NEEDS to be fixed!!
+      changeNavBarStyle(navBar, `Section ${4}`);
+    } else {
+      changeNavBarStyle(navBar, `Section ${pos}`);
+    }
   });
 }
 
@@ -120,69 +125,26 @@ function createNavbarElements(pageSections, navBar) {
     });
   });
 }
-/* 
-function createNavbarElements(navItemsArr, navBar) {
-  //Loop over NavBar Elements
-  navItemArr.forEach((el, indx) => {
-    //Create List Item for Navigation
-    let liItem = document.createElement("li");
 
-    // liItem.setAttribute("class", "navbar__menu");
-    liItem.classList.add("navbar__menu");
-    // liItem.classList.add("data-active", `section${indx + 1}`);
-    liItem.setAttribute("data-active", `section${indx + 1}`);
-    liItem.innerHTML = `<a class="menu__link" href="#section${indx +
-      1}">${el}</a>`;
-    liItem.addEventListener("click", function(event) {
-      //Loop through page sections
-      pageSections.forEach((el, indx) => {
-        //check if Page Secion matches Navigation
-        if (liItem.getAttribute("data-active") === el.getAttribute("id")) {
-          // liItem.classList.add("menu__click ");
-          let clsList = liItem.classList;
-          // clsList.remove("navbar__menu");
-          clsList.add("menu__click");
-          // liItem.textContent = clsList;
-
-          console.log(clsList, liItem);
-
-          //Now Toggle the Active Class
-          if (el.getAttribute("class") !== "your-active-class") {
-            //Remove active class
-            pageSections.forEach(el => {
-              if (el.getAttribute("class") === "your-active-class") {
-                el.classList.remove("your-active-class");
-              }
-            });
-            //Add Active class
-            el.classList.add("your-active-class");
-
-            // el.classList.add("your-active-class");
-          }
-        }
-      });
-    });
-    navBar.appendChild(liItem);
-  });
-}
- */
 /**
  * End Helper Functions
  * Begin Main Functions
  *
  */
 
-//Add Event Listener to NavBar
-// navBar.addEventListener("click", function(event) {
-//   console.log(event);
-//   //event.srcElement.setAttribute("class", "your-active-class");
-// });
-
 //Create Navbar Element
 
-// Add class 'active' to section when near top of viewport
+//Get Section Element
+const pageSections = getHtmlElements("section");
 
-// Scroll to anchor ID using scrollTO event
+//Select Position to Add Navigation
+const navBar = document.querySelector("#navbar__list");
+
+//Create Navigation and append to DOM
+createNavbarElements(pageSections, navBar);
+
+//Activate Navigate to Scroll functionality
+navigateToScrollPos(navBar);
 
 /**
  * End Main Functions
@@ -195,17 +157,3 @@ function createNavbarElements(navItemsArr, navBar) {
 // Scroll to section on link click
 
 // Set sections as active
-
-// build the nav Element
-//Get Section Element
-const pageSections = getHtmlElements("section");
-
-//Extract Array with Navigation Items
-// const navItemArr = getNavItems(pageSections);
-
-//Select Position to Add Navigation
-const navBar = document.querySelector("#navbar__list");
-
-//Create Navigation and append to DOM
-// createNavbarElements(navItemArr, navBar);
-createNavbarElements(pageSections, navBar);
