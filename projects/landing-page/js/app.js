@@ -101,6 +101,7 @@ function navigateToScrollPos(NavBar) {
 
         if (j === pos) {
           changeNavBarStyle(navBar, `Section ${pos + 1}`);
+          toggleNavigation(pageSections, `Section ${pos + 1}`);
         }
       }
     }

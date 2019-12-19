@@ -75,6 +75,17 @@ section {
   display: inline-block;
 }
 
+a {
+  color: red;
+  margin: 0 10px;
+  text-decoration: none;
+}
+
+a.active-item {
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
 .navbar__menu .menu__link {
   display: block;
   padding: 1em;
@@ -233,6 +244,7 @@ section.your-active-class .landing__container::after {
   from {
     transform: rotate(0deg) translate(-1em) rotate(0deg);
   }
+
   to {
     transform: rotate(360deg) translate(-1em) rotate(-360deg);
   }
