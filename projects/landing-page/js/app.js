@@ -18,6 +18,8 @@
  *
  */
 
+let headerElements = document.querySelectorAll("h2");
+
 /**
  * End Global Variables
  * Start Helper Functions
@@ -86,19 +88,21 @@ function navigateToScrollPos(NavBar) {
   //Scroll Event Listener
   document.addEventListener("scroll", () => {
     secPos = [];
-    pageSections.forEach(el => {
+
+    headerElements.forEach(el => {
       secPos.push(el.getBoundingClientRect().top);
     });
 
-    // console.log(secPos);
     let pos = secPos.findIndex(el => el > 0);
-    console.log(pos, navBar, `Section ${pos}`);
+    if (pos !== -1) {
+      removeActiveClass(pageSections);
+      for (let j = 0; j < pageSections.length; ++j) {
+        console.log(j, pos);
 
-    if (pos < 0) {
-      //NEEDS to be fixed!!
-      changeNavBarStyle(navBar, `Section ${4}`);
-    } else {
-      changeNavBarStyle(navBar, `Section ${pos}`);
+        if (j === pos) {
+          changeNavBarStyle(navBar, `Section ${pos + 1}`);
+        }
+      }
     }
   });
 }
@@ -151,9 +155,3 @@ navigateToScrollPos(navBar);
  * Begin Events
  *
  */
-
-// Build menu
-
-// Scroll to section on link click
-
-// Set sections as active
