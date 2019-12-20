@@ -3,6 +3,7 @@
 ## Table of Contents
 
 - [Instructions](#instructions)
+- [File Structure](#file)
 
 ## Instructions
 
@@ -22,5 +23,5 @@ Files need to be in the following order to work:
 
 3. index.html
 
-> Hafe fun!
+> Have fun!
 > :rocket:
