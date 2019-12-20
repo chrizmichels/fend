@@ -3,13 +3,13 @@
 ## Table of Contents
 
 - [Instructions](#instructions)
-- [File Structure](#file)
+- [File Structure](#FILE)
 
 ## Instructions
 
 The starter project has some HTML and CSS styling to display a dynamic version of the Landing Page project. Top Level NAvigation will populate based on the sections available in the html file.
 
-## File structure
+## FILE structure
 
 Files need to be in the following order to work:
 
