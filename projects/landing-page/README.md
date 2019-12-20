@@ -2,7 +2,7 @@
 
 ## Table of Contents
 
-- [Instructions](#instructions #Structure)
+- [Instructions](#instructions)
 
 ## Instructions
 
@@ -21,3 +21,6 @@ Files need to be in the following order to work:
 - app.js
 
 3. index.html
+
+> Hafe fun!
+> :rocket:
