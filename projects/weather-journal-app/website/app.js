@@ -4,12 +4,13 @@ let feelingUI = "";
 
 // Create a new date instance dynamically with JS
 let d = new Date();
-let newDate = d.getMonth() + "." + d.getDate() + "." + d.getFullYear();
+// let newDate = d.getMonth() + "." + d.getDate() + "." + d.getFullYear();
+let newDate = `${d.getDate()}.${d.getMonth()}.${d.getFullYear()} `;
 
 // Personal API Key for OpenWeatherMap API
 const apiKey = `42b8991393801a8662037ddb8fbd3c5f`;
-const locationID = `2950061`;
-const countryCode = "ch";
+// const locationID = `2950061`;
+// const countryCode = "ch";
 const unit = `metric`;
 
 // Event listener to add function to existing HTML DOM element
@@ -30,7 +31,7 @@ function getStarted() {
         Content: feelingUI
       });
     })
-    .then(updateUI());
+    .then(data => updateUI());
 }
 
 /* Function to GET Web API Data*/
@@ -114,9 +115,12 @@ const updateUI = async () => {
   try {
     const allData = await request.json();
     console.log("updateUI -> ", allData);
-    document.getElementById("date").innerHTML = allData.Date;
-    document.getElementById("temp").innerHTML = allData.Temp;
-    document.getElementById("content").innerHTML = allData.Content;
+    document.getElementById("date").innerHTML = `Today's ${allData.Date}`;
+    document.getElementById("location").innerHTML = `at ${allData.Location}`;
+    document.getElementById(
+      "temp"
+    ).innerHTML = `Degree celsius ${allData.Temp}`;
+    document.getElementById("content").innerHTML = `I fell ${allData.Content}`;
   } catch (error) {
     console.log("error", error);
   }
