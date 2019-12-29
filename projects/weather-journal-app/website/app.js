@@ -120,7 +120,7 @@ const updateUI = async () => {
     document.getElementById(
       "temp"
     ).innerHTML = `Degree celsius ${allData.Temp}`;
-    document.getElementById("content").innerHTML = `I fell ${allData.Content}`;
+    document.getElementById("content").innerHTML = `I feel ${allData.Content}`;
   } catch (error) {
     console.log("error", error);
   }
