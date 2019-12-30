@@ -5,7 +5,7 @@ let feelingUI = "";
 // Create a new date instance dynamically with JS
 let d = new Date();
 // let newDate = d.getMonth() + "." + d.getDate() + "." + d.getFullYear();
-let newDate = `${d.getDate()}.${d.getMonth()}.${d.getFullYear()} `;
+let newDate = `${d.getDate()}.${d.getMonth() + 1}.${d.getFullYear()} `;
 
 // Personal API Key for OpenWeatherMap API
 const apiKey = `42b8991393801a8662037ddb8fbd3c5f`;
@@ -37,13 +37,13 @@ function getStarted() {
 /* Function to GET Web API Data*/
 const getWeatherData = async (unit, apiKey) => {
   try {
-    let zipCode = await document.getElementById("zip").value;
+    let zipCode = document.getElementById("zip").value;
     console.log("getWeatherData - Get Elements by ID - zipCode", zipCode);
 
-    let countryCode = await document.getElementById("cc").value;
+    let countryCode = document.getElementById("cc").value;
     console.log("getWeatherData - Get Elements by ID - CC", countryCode);
 
-    feelingUI = await document.getElementById("feelings").value;
+    feelingUI = document.getElementById("feelings").value;
     console.log("getWeatherData - Get Elements by ID - feeling", feelingUI);
 
     let url = `http://api.openweathermap.org/data/2.5/weather?zip=${zipCode},${countryCode}&units=${unit}&APPID=${apiKey}`;
